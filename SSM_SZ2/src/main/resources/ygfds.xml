@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--加载外部的配置文件(dataSource的参数)-->
+    <properties resource="druid.properties"></properties>
+
+    <!--扫包设置别名-->
+    <typeAliases>
+        <package name="com.itheima.domain"/>
+        <!--<typeAlias type="com.itheima.domain.User" alias="user"/>-->
+    </typeAliases>
+    <!--配置自定义类型转换器-->
+    <typeHandlers>
+        <package name="com.itheima.handlers"/>
+    </typeHandlers>
+    <!--配置插件  分页查询-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+
+    <!--配置环境 默认环境是mysql这个配置环境-->
+    <environments default="mysql">
+        <!--配置数据源环境-->
+        <environment id="mysql">
+            <!--指定事务管理采用JDBC-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--数据源采用 POOLED:池化技术-->
+            <dataSource type="POOLED">
+                <!--获取数据源需要的参数-->
+                <property name="driver" value="${jdbc.ClassName}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.name}"/>
+                <property name="password" value="${jdbc.word}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--加载映射文件-->
+    <mappers>
+        <package name="com.itheima.mapper"/>
+
+        <!--<mapper resource="com/itheima/mapper/UserMapper.xml"/>-->
+    </mappers>
+
+</configuration>
