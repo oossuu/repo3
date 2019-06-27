@@ -11,6 +11,8 @@ public class TStudent {
 
     private String address;
 
+    private int aa;
+
     public Integer getId() {
         return id;
     }
